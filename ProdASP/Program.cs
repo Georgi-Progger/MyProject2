@@ -24,7 +24,10 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(opts =>
 .AddEntityFrameworkStores<ApplicationContext>()
 .AddDefaultUI()
 .AddDefaultTokenProviders();
-
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/Home/AccessDenied";
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
