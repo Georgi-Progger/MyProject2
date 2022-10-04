@@ -1,50 +1,47 @@
 ﻿@model IEnumerable<Place>
-<div>
-    @foreach (var i in Model)
-    {
-        <p>@i.NamePlace</p>
-    }
-</div>
 <table>
     <tr>
-        <th>head1</th>
-        <th>head2</th>
-        <th>head3</th>
+        <th>Флаг страны</th>
+        <th>Страна</th>
+        <th>Язык</th>
     </tr>
-    <tr class="dropClick">
-        <td>8/2/2013</td>
-        <td>$960.00</td>
-        <td>$48.14</td>
-    </tr>
-    <tr class="dropDown">
-        <td>
-            <table>
-                <tr class="dropClick">
-                    <td>Data</td>
-                    <td>$960.00</td>
-                </tr>
-                <tr class="dropDown">
-                    <td>
-                        <table>
-                            <tr>
-                                <td colspan="2">data</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">data</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Data</td>
-                    <td>$873.50</td>
-                </tr>
-                <tr>
-                    <td>Data</td>
-                    <td>$48.14</td>
-                </tr>
-            </table>
-    </tr>
+    @foreach (var i in Model){
+        <tr class="dropClick">
+            <td>@i.NamePlace</td>
+            <td>$960.00</td>
+            <td>$48.14</td>
+        </tr>
+        <tr class="dropDown">
+            <td>
+                <table>
+                    <tr class="dropClick">
+                        <td>Data</td>
+                        <td>$960.00</td>
+                    </tr>
+                    <tr class="dropDown">
+                        <td>
+                            <table>
+                                <tr>
+                                    <td colspan="2">data</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">data</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Data</td>
+                        <td>$873.50</td>
+                    </tr>
+                    <tr>
+                        <td>Data</td>
+                        <td>$48.14</td>
+                    </tr>
+                </table>
+        </tr>
+    }
+    
 </table>
 
 

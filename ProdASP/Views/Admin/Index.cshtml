@@ -1,0 +1,79 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using ProdASP.Models
+@model IndexViewModel
+
+<style>
+    .glyphicon {
+        display: inline-block;
+        padding: 0 5px;
+    }
+
+    .glyphicon-chevron-right:after {
+        content: "\00BB";
+    }
+
+    .glyphicon-chevron-left:before {
+        content: "\00AB";
+    }
+</style>
+
+<h1>Список стран</h1>
+<p>
+    <a asp-area="" asp-controller="Place" asp-action="Index">Добавление страны</a>
+</p>
+<form method="get">
+    <label>Имя: </label>
+    <input name="name" value="@Model.FilterViewModel.SelectedName" />
+
+    <label>Компания: </label>
+    <select name="company" asp-items="Model.FilterViewModel.Places"></select>
+
+    <input type="submit" value="Фильтр" />
+</form>
+
+<table>
+    <tr>
+        <th scope="col">
+            <a asp-action="Index"
+               asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+               asp-route-name="@(Model.FilterViewModel.SelectedName)"
+               asp-route-company="@(Model.FilterViewModel.SelectedPlace)">Имя</a>
+        </th>
+        <th scope="col">
+            Язык
+        </th>
+    </tr>
+    @foreach (Place u in Model.Places)
+    {
+        <tr>
+            <td>@u.NamePlace</td>
+            <td>@u.Language</td>
+            <td>@u.Information</td>
+        </tr>
+    }
+</table>
+<p>
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       asp-route-name="@(Model.FilterViewModel.SelectedName)"
+       asp-route-company="@(Model.FilterViewModel.SelectedPlace)"
+       asp-route-sortorder="@(Model.SortViewModel.Current)"
+       class="glyphicon glyphicon-chevron-left">
+            Назад
+        </a>
+    }
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       asp-route-name="@(Model.FilterViewModel.SelectedName)"
+       asp-route-company="@(Model.FilterViewModel.SelectedPlace)"
+       asp-route-sortorder="@(Model.SortViewModel.Current)"
+       class="glyphicon glyphicon-chevron-right">
+            Вперед
+        </a>
+    }
+</p>
