@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProdASP.Data;
 using ProdASP.Models;
 using System.Diagnostics;
 
@@ -8,10 +9,13 @@ namespace ProdASP.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private ApplicationContext _db;
+        private IWebHostEnvironment _appEnvironment;
+        public HomeController(ILogger<HomeController> logger, ApplicationContext db, IWebHostEnvironment appEnvironment)
         {
             _logger = logger;
+            _db = db;
+            _appEnvironment = appEnvironment;
         }
         public IActionResult AccessDenied()
         {
@@ -19,7 +23,8 @@ namespace ProdASP.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            ViewBag.HostPath = _appEnvironment.WebRootPath;
+            return View(_db.Places.ToList());
         }
         [Authorize(Roles ="Admin")]
         public IActionResult Privacy()

@@ -7,6 +7,7 @@ namespace ProdASP.Data;
 
 public class ApplicationContext : IdentityDbContext<ApplicationUser>
 {
+    public DbSet<Place> Places { get; set; } = null!;
     public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
     {

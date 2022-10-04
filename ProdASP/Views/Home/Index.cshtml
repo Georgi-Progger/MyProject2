@@ -1,4 +1,11 @@
-﻿<table>
+﻿@model IEnumerable<Place>
+<div>
+    @foreach (var i in Model)
+    {
+        <p>@i.NamePlace</p>
+    }
+</div>
+<table>
     <tr>
         <th>head1</th>
         <th>head2</th>
@@ -67,3 +74,4 @@
             color: red
         }
     </style>   
+    
