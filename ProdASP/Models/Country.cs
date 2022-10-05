@@ -2,7 +2,7 @@
 
 namespace ProdASP.Models
 {
-    public class Place
+    public class Country
     {
         public int Id { get; set; }
         public string? Image { get; set; }

@@ -1,44 +1,38 @@
-﻿@model IEnumerable<Place>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using ProdASP.Models
+@model IEnumerable<Country>
 <table>
     <tr>
+        <th></th>
         <th>Флаг страны</th>
         <th>Страна</th>
         <th>Язык</th>
     </tr>
     @foreach (var i in Model){
-        <tr class="dropClick">
-            <td>@i.NamePlace</td>
-            <td>$960.00</td>
-            <td>$48.14</td>
+        <tr class="header expand">
+            <td style="width: 10%;" ><span class="sign"></span>
+
+        </td>
+            <td><img  src="@i.Image" width="100px" height="50px" /></td>
+            <td >@i.NamePlace</td>
+            <td>@i.Language</td>
         </tr>
-        <tr class="dropDown">
-            <td>
-                <table>
-                    <tr class="dropClick">
-                        <td>Data</td>
-                        <td>$960.00</td>
-                    </tr>
-                    <tr class="dropDown">
-                        <td>
-                            <table>
-                                <tr>
-                                    <td colspan="2">data</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">data</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Data</td>
-                        <td>$873.50</td>
-                    </tr>
-                    <tr>
-                        <td>Data</td>
-                        <td>$48.14</td>
-                    </tr>
-                </table>
+        <tr>
+            <th colspan="2"></th>
+            <th>Республики</th>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td>RR</td>
+        </tr>
+        <tr>
+            <th colspan="2"></th>
+            <th>Города</th>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td>CC</td>
         </tr>
     }
     
@@ -47,19 +41,22 @@
 
 @section scripts {
     <script>
-        $(function () {
-            $(".dropDown").hide();
-            $(".dropClick").on("click", function () {
-                var $nextDrop = $(this).parent().find(".dropDown").first();
-                $nextDrop.slideToggle(100);
-            });
+        //$(function () {
+        //    $(".dropDown").hide();
+        //    $(".dropClick").on("click", function () {
+        //        var $nextDrop = $(this).parent().find(".dropDown").first();
+        //        $nextDrop.slideToggle(100);
+        //    });
+        //});
+        $('.header').click(function () {
+            $(this).toggleClass('expand').nextUntil('tr.header').slideToggle(100);
         });
     </script>
 }
 
 
     <style>
-        td {
+        /*td {
             border: 1px solid black
         }
 
@@ -69,6 +66,24 @@
 
         .dropClick {
             color: red
+        }*/
+        table, tr, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+            tr.header {
+                cursor: pointer;
+            }
+
+        .header .sign:after {
+            content: "v";
+            display: inline-block;
+        }
+
+        .header.expand .sign:after {
+            content: ">";
         }
     </style>   
     
+

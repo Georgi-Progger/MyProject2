@@ -25,14 +25,14 @@ namespace ProdASP.Controllers
         {
             if (id != null)
             {
-                Place? user = await _db.Places.FirstOrDefaultAsync(p => p.Id == id);
+                Country? user = await _db.Places.FirstOrDefaultAsync(p => p.Id == id);
                 if (user != null) return View(user);
             }
             return NotFound();
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<IActionResult> Edit(Place plc)
+        public async Task<IActionResult> Edit(Country plc)
         {
             _db.Places.Update(plc);
             await _db.SaveChangesAsync();
@@ -41,7 +41,7 @@ namespace ProdASP.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Delate(int id)
         {
-            Place adv = _db.Places.FirstOrDefault(a => a.Id == id)!;
+            Country adv = _db.Places.FirstOrDefault(a => a.Id == id)!;
             if (adv != null)
             {
                 _db.Places.Remove(adv);
@@ -71,7 +71,7 @@ namespace ProdASP.Controllers
                     }
                 }
 
-                Place adv = new Place
+                Country adv = new Country
                 {
                     NamePlace = plcViewModel.NamePlace,
                     Language = plcViewModel.Language,

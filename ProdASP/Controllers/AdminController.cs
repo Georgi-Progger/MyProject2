@@ -18,7 +18,7 @@ namespace ProdASP.Controllers
             int pageSize = 3;
 
             //фильтрация
-            IQueryable<Place> places = _db.Places.AsQueryable();
+            IQueryable<Country> places = _db.Places.AsQueryable();
 
             if (company != 0)
             {
