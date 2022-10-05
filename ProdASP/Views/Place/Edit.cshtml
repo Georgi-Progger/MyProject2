@@ -1,0 +1,23 @@
+﻿@model ProdASP.Models.Place
+
+<h2>Редактирование пользователя</h2>
+<form asp-controller="Place" asp-action="Edit" asp-route-id="@Model.Id">
+	<div class="mb-3">
+		<label class="form-label">Название страны</label>
+		<input type="text" class="form-control" name="NamePlace">
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Язык страны</label>
+		<input type="text" class="form-control" name="Language">
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Информация о стране</label>
+		<textarea class="form-control" name="Information" rows="3"></textarea>
+	</div>
+	<div class="form-file">
+		<input type="file" class="form-file-input" name="Image">
+		<label class="form-file-label">Флаг страны</label>
+	</div>
+	<br />
+	<input type="submit" value="Загрузить" />
+</form>

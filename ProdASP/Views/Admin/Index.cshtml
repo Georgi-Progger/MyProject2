@@ -3,6 +3,7 @@
 @using ProdASP.Models
 @model IndexViewModel
 
+
 <style>
     .glyphicon {
         display: inline-block;
@@ -50,6 +51,10 @@
             <td>@u.NamePlace</td>
             <td>@u.Language</td>
             <td>@u.Information</td>
+            <td>
+                <a type="button" class="btn btn-primary" asp-action="Edit" asp-controller="Place" asp-route-id="@u.Id">Изменить</a>
+            </td>
+            <td><a type="button" class="btn btn-danger" sp-area="" asp-controller="Place" asp-action="Delate" asp-route-id="@u.Id">Удалить</a></td>
         </tr>
     }
 </table>

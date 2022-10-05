@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProdASP.Data;
 using ProdASP.Models;
 
@@ -18,6 +19,36 @@ namespace ProdASP.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id != null)
+            {
+                Place? user = await _db.Places.FirstOrDefaultAsync(p => p.Id == id);
+                if (user != null) return View(user);
+            }
+            return NotFound();
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> Edit(Place plc)
+        {
+            _db.Places.Update(plc);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delate(int id)
+        {
+            Place adv = _db.Places.FirstOrDefault(a => a.Id == id)!;
+            if (adv != null)
+            {
+                _db.Places.Remove(adv);
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Index", "Home");
+
         }
         [HttpPost]
         public async Task<IActionResult> Create(PlaceViewModel plcViewModel)
