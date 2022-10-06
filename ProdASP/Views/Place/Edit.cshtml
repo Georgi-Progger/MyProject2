@@ -4,18 +4,18 @@
 <form asp-controller="Place" asp-action="Edit" asp-route-id="@Model.Id">
 	<div class="mb-3">
 		<label class="form-label">Название страны</label>
-		<input type="text" class="form-control" name="NamePlace">
+		<input type="text" class="form-control" value="@Model.NamePlace" name="NamePlace">
 	</div>
 	<div class="mb-3">
 		<label class="form-label">Язык страны</label>
-		<input type="text" class="form-control" name="Language">
+		<input type="text" class="form-control" value="@Model.Language" name="Language">
 	</div>
 	<div class="mb-3">
 		<label class="form-label">Информация о стране</label>
-		<textarea class="form-control" name="Information" rows="3"></textarea>
+		<textarea class="form-control" name="Information" rows="3">@Model.Information</textarea>
 	</div>
 	<div class="form-file">
-		<input type="file" class="form-file-input" name="Image">
+		<input type="file" class="form-file-input" accept="image/png, image/gif, image/jpeg" name="Image">
 		<label class="form-file-label">Флаг страны</label>
 	</div>
 	<br />

@@ -11,28 +11,37 @@
     </tr>
     @foreach (var i in Model){
         <tr class="header expand">
-            <td style="width: 10%;" ><span class="sign"></span>
+            <td class="top" style="width: 5%;" ><span class="sign"></span>
 
         </td>
-            <td><img  src="@i.Image" width="100px" height="50px" /></td>
-            <td >@i.NamePlace</td>
-            <td>@i.Language</td>
+            <td class="top" ><img  src="@i.Image" width="100px" height="50px" /></td>
+            <td style="width: 40%;">@i.NamePlace</td>
+            <td style="width: 40%;">@i.Language</td>
         </tr>
         <tr>
-            <th colspan="2"></th>
+            <td class="down" colspan="2"></td>
+            <th colspan="2">Информация о стране</th>
+        </tr>
+        <tr>
+            <td class="down" colspan="2"></td>
+            <td class="info" colspan="2">@i.Information</td>
+        </tr>
+        <tr>
+            <th class="down" colspan="2"></th>
             <th>Республики</th>
         </tr>
         <tr>
-            <td colspan="2"></td>
+            <td class ="down" colspan="2"></td>
             <td>RR</td>
         </tr>
         <tr>
-            <th colspan="2"></th>
+            <th class="down2" colspan="2" rowspan="2"></th>
             <th>Города</th>
+            <th>В какой республике</th>
         </tr>
         <tr>
-            <td colspan="2"></td>
-            <td>CC</td>
+            <td class="down3">CC</td>
+            <td class="down3">CC2</td>
         </tr>
     }
     
@@ -67,12 +76,29 @@
         .dropClick {
             color: red
         }*/
+        .info{
+            word-break: break-all;
+        }
+        .down3{
+            border-bottom : 3px solid black;
+        }
+        .down2{
+            border-left : hidden!important;
+        }
+        .down{
+            border-left : hidden!important;
+            border-bottom : hidden!important;
+        }
         table, tr, td, th {
             border: 1px solid black;
             border-collapse: collapse;
         }
 
-            tr.header {
+        th{
+            text-align: center;
+        }
+
+        tr.header {
                 cursor: pointer;
             }
 
@@ -84,6 +110,7 @@
         .header.expand .sign:after {
             content: ">";
         }
+        
     </style>   
     
 
