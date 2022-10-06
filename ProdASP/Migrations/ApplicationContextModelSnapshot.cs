@@ -277,7 +277,7 @@ namespace ProdASP.Migrations
                     b.ToTable("AspNetUsers", "Identity");
                 });
 
-            modelBuilder.Entity("ProdASP.Models.Place", b =>
+            modelBuilder.Entity("ProdASP.Models.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

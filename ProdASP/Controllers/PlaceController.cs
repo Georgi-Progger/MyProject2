@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProdASP.Data;
 using ProdASP.Models;
+using System.IO;
 
 namespace ProdASP.Controllers
 {
@@ -25,18 +26,44 @@ namespace ProdASP.Controllers
         {
             if (id != null)
             {
-                Country? user = await _db.Places.FirstOrDefaultAsync(p => p.Id == id);
-                if (user != null) return View(user);
+                Country? ctr = await _db.Places.FirstOrDefaultAsync(p => p.Id == id);
+                if (ctr != null)
+                {
+                    return View(ctr);
+                }
             }
             return NotFound();
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<IActionResult> Edit(Country plc)
+        public async Task<IActionResult> Edit(Country plc, PlaceViewModel plcViewModel)
         {
-            _db.Places.Update(plc);
-            await _db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            if (plcViewModel != null)
+            {
+                string path;
+                if (plcViewModel.Image != null)
+                    path = $@"/images/{plcViewModel.Image.FileName}";
+                else
+                    path = "";
+                string fullPath = _appEnvironment.WebRootPath + path;
+
+                Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
+                if (plcViewModel.Image != null)
+                {
+                    using (var fileStream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await plcViewModel.Image.CopyToAsync(fileStream);
+                    }
+                }
+                else
+                {
+                    path = "";
+                }
+                _db.Places.Update(plc);
+                plc.Image = path;
+                await _db.SaveChangesAsync();
+            }
+            return RedirectToAction("Index","Admin");
         }
         [Authorize(Roles = "Admin")]
         public IActionResult Delate(int id)

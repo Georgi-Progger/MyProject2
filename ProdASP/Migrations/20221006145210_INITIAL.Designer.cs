@@ -12,8 +12,8 @@ using ProdASP.Data;
 namespace ProdASP.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221004160944_Initial")]
-    partial class Initial
+    [Migration("20221006145210_INITIAL")]
+    partial class INITIAL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -279,7 +279,7 @@ namespace ProdASP.Migrations
                     b.ToTable("AspNetUsers", "Identity");
                 });
 
-            modelBuilder.Entity("ProdASP.Models.Place", b =>
+            modelBuilder.Entity("ProdASP.Models.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
