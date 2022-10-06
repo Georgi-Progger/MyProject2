@@ -1,0 +1,21 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using ProdASP.Models
+@model City
+
+<form asp-controller="Place" asp-action="CreateCity" method="post">
+	<div class="mb-3">
+		<label class="form-label">Название города</label>
+		<input type="text" class="form-control" name="NamePlace">
+	</div>
+	<div class="mb-3">
+		<label class="form-label">В какой республике</label>
+		<select asp-for="Id" name="CountryName" class="form-control" asp-items="ViewBag.Id"></select>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">В какой республике</label>
+		<select asp-for="NamePlace" name="RepubName" class="form-control" asp-items="ViewBag.Republic"></select>
+	</div>
+	<br />
+	<input type="submit" value="Загрузить" />
+</form>

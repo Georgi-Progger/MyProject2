@@ -1,7 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
 @using ProdASP.Models
-@model IEnumerable<Country>
+@model AllViewPlace
 <table>
     <tr>
         <th></th>
@@ -9,14 +8,14 @@
         <th>Страна</th>
         <th>Язык</th>
     </tr>
-    @foreach (var i in Model){
+    @foreach (var i in Model.Country){
         <tr class="header expand">
             <td class="top" style="width: 5%;" ><span class="sign"></span>
 
         </td>
             <td class="top" ><img  src="@i.Image" width="100px" height="50px" /></td>
-            <td style="width: 40%;">@i.NamePlace</td>
-            <td style="width: 40%;">@i.Language</td>
+            <td class="top" style="width: 40%;">@i.NamePlace</td>
+            <td class="top" style="width: 40%;">@i.Language</td>
         </tr>
         <tr>
             <td class="down" colspan="2"></td>
@@ -29,20 +28,34 @@
         <tr>
             <th class="down" colspan="2"></th>
             <th>Республики</th>
+            <th>Язык республики</th>
         </tr>
-        <tr>
-            <td class ="down" colspan="2"></td>
-            <td>RR</td>
-        </tr>
+        @foreach (var u in Model.Republic)
+        {
+            if (u.CountryName == Convert.ToString(i.Id) && u.CountryName != null)
+            {
+                <tr>
+                    <th class="down" colspan="2"></th>
+                    <td>@u.NamePlace</td>
+                    <td>@u.Language</td>
+                </tr>
+            }
+        }
         <tr>
             <th class="down2" colspan="2" rowspan="2"></th>
             <th>Города</th>
             <th>В какой республике</th>
         </tr>
-        <tr>
-            <td class="down3">CC</td>
-            <td class="down3">CC2</td>
-        </tr>
+        @foreach (var u in Model.City)
+        {
+            @if (u.RepubName == Convert.ToString(i.Id) && u.RepubName != null){
+            <tr>
+                <th class="down" colspan="2"></th>
+                <td >@u.NamePlace</td>
+                <td >@u.RepubName</td>
+            </tr>
+            }
+        }
     }
     
 </table>
@@ -50,13 +63,6 @@
 
 @section scripts {
     <script>
-        //$(function () {
-        //    $(".dropDown").hide();
-        //    $(".dropClick").on("click", function () {
-        //        var $nextDrop = $(this).parent().find(".dropDown").first();
-        //        $nextDrop.slideToggle(100);
-        //    });
-        //});
         $('.header').click(function () {
             $(this).toggleClass('expand').nextUntil('tr.header').slideToggle(100);
         });
@@ -65,22 +71,11 @@
 
 
     <style>
-        /*td {
-            border: 1px solid black
-        }
-
-        .dropDown {
-            display: none
-        }
-
-        .dropClick {
-            color: red
-        }*/
         .info{
             word-break: break-all;
         }
-        .down3{
-            border-bottom : 3px solid black;
+        .top{
+            border-top : 3px solid black;
         }
         .down2{
             border-left : hidden!important;

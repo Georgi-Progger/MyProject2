@@ -8,6 +8,8 @@ namespace ProdASP.Data;
 public class ApplicationContext : IdentityDbContext<ApplicationUser>
 {
     public DbSet<Country> Places { get; set; } = null!;
+    public DbSet<Republic> Republics { get; set; } = null!;
+    public DbSet<City> Cities { get; set; } = null!;
     public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
     {

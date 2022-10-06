@@ -23,8 +23,14 @@ namespace ProdASP.Controllers
         }
         public IActionResult Index()
         {
+            var model = new AllViewPlace
+            {
+                Country = _db.Places.ToList(),
+                Republic = _db.Republics.ToList(),
+                City = _db.Cities.ToList()
+            };
             ViewBag.HostPath = _appEnvironment.WebRootPath;
-            return View(_db.Places.ToList());
+            return View(model);
         }
         [Authorize(Roles ="Admin")]
         public IActionResult Privacy()

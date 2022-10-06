@@ -24,11 +24,11 @@
     <a class="button21" asp-area="" asp-controller="Place" asp-action="Index">Добавить страну</a>
 </p>
 <form method="get">
-    <label>Имя: </label>
-    <input name="name" value="@Model.FilterViewModel.SelectedName" />
+    <label>Старанa: </label>
+    <input name="plc" value="@Model.FilterViewModel.SelectedName" />
 
     <label>Страна: </label>
-    <select name="company" asp-items="Model.FilterViewModel.Places"></select>
+    <select name="place" asp-items="Model.FilterViewModel.Places"></select>
 
     <input type="submit" value="Фильтр" />
 </form>

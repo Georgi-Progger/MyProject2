@@ -5,16 +5,15 @@ namespace ProdASP.Models
 {
     public class FilterViewModel
     {
-        public FilterViewModel(List<Country> companies, int company, string name)
+        public FilterViewModel(List<Country> placies, int place, string plc)
         {
-            // устанавливаем начальный элемент, который позволит выбрать всех
-            companies.Insert(0, new Country {NamePlace = "Все", Id = 0 });
-            Places = new SelectList(companies, "Id", "NamePlace", company);
-            SelectedPlace = company;
-            SelectedName = name;
+            placies.Insert(0, new Country {NamePlace = "Все", Id = 0 });
+            Places = new SelectList(placies, "Id", "NamePlace", place);
+            SelectedPlace = place;
+            SelectedName = plc;
         }
         public SelectList Places { get; } 
         public int SelectedPlace { get; } 
-        public string SelectedName { get; } // введенное имя
+        public string SelectedName { get; } 
     }
 }

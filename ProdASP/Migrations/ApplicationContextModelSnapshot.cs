@@ -277,6 +277,30 @@ namespace ProdASP.Migrations
                     b.ToTable("AspNetUsers", "Identity");
                 });
 
+            modelBuilder.Entity("ProdASP.Models.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NamePlace")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepubName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities", "Identity");
+                });
+
             modelBuilder.Entity("ProdASP.Models.Country", b =>
                 {
                     b.Property<int>("Id")
@@ -300,6 +324,30 @@ namespace ProdASP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Places", "Identity");
+                });
+
+            modelBuilder.Entity("ProdASP.Models.Republic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NamePlace")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Republics", "Identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

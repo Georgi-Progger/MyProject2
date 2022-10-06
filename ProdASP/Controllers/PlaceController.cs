@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProdASP.Data;
 using ProdASP.Models;
@@ -106,6 +107,53 @@ namespace ProdASP.Controllers
                     Image = path,
                 };
                 _db.Places.Add(adv);
+                _db.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+        public IActionResult CreateRepublic()
+        {
+            ViewData["Id"] = new SelectList(_db.Places, "Id", "NamePlace");
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateRepublic(RepublicViewModel plcViewModel)
+        {
+            if (plcViewModel != null)
+            {
+                Republic adv = new Republic
+                {
+                    NamePlace = plcViewModel.NamePlace,
+                    Language = plcViewModel.Language,
+                    CountryName = plcViewModel.CountryName
+                    
+                };
+                _db.Republics.Add(adv);
+                _db.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+        public IActionResult CreateCity()
+        {
+            ViewBag.Id = new SelectList(_db.Places,"Id", "NamePlace");
+            ViewBag.Republic = new SelectList(_db.Republics, "Id", "NamePlace");
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateCity(CityViewModel plcViewModel)
+        {
+            if (plcViewModel != null)
+            {
+                City adv = new City
+                {
+                    NamePlace = plcViewModel.NamePlace,
+                    CountryName = plcViewModel.RepubName,
+                    RepubName = plcViewModel.RepubName
+
+                };
+                _db.Cities.Add(adv);
                 _db.SaveChanges();
             }
 

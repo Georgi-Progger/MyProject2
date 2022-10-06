@@ -39,6 +39,22 @@ namespace ProdASP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Cities",
+                schema: "Identity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NamePlace = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CountryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RepubName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cities", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Places",
                 schema: "Identity",
                 columns: table => new
@@ -53,6 +69,22 @@ namespace ProdASP.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Places", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Republics",
+                schema: "Identity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NamePlace = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CountryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Republics", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -263,7 +295,15 @@ namespace ProdASP.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Cities",
+                schema: "Identity");
+
+            migrationBuilder.DropTable(
                 name: "Places",
+                schema: "Identity");
+
+            migrationBuilder.DropTable(
+                name: "Republics",
                 schema: "Identity");
 
             migrationBuilder.DropTable(
