@@ -323,6 +323,16 @@ namespace ProdASP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Places", "Identity");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Image = "/images/russia.jpg",
+                            Information = "Какой-то текстКакой-то текстКакой-то текстКакой-то текстКакой-то текстКакой-то текст",
+                            Language = "русский",
+                            NamePlace = "Россия"
+                        });
                 });
 
             modelBuilder.Entity("ProdASP.Models.Republic", b =>

@@ -12,7 +12,7 @@ using ProdASP.Data;
 namespace ProdASP.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221007072947_INITIAL")]
+    [Migration("20221007112613_INITIAL")]
     partial class INITIAL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -325,6 +325,16 @@ namespace ProdASP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Places", "Identity");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Image = "/images/russia.jpg",
+                            Information = "Какой-то текстКакой-то текстКакой-то текстКакой-то текстКакой-то текстКакой-то текст",
+                            Language = "русский",
+                            NamePlace = "Россия"
+                        });
                 });
 
             modelBuilder.Entity("ProdASP.Models.Republic", b =>

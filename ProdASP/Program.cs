@@ -52,7 +52,6 @@ using (var scope = app.Services.CreateScope())
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         await ContextSeed.SeedRolesAsync(userManager, roleManager);
         await ContextSeed.SeedAdminAsync(userManager, roleManager);
-        await Initialize(services);
     }
     catch (Exception ex)
     {
@@ -78,20 +77,3 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 app.Run();
-
- static async Task Initialize(IServiceProvider serviceProvider)
-{
-    var context = serviceProvider.GetRequiredService<ApplicationContext>();
-    if (!context.Places.Any())
-    {
-        context.Places.Add(new Country()
-        {
-            Id = 1,
-            NamePlace = "Россия",
-            Language = "русский",
-            Information = "Какой-то текстКакой-то текстКакой-то текстКакой-то текстКакой-то текстКакой-то текст",
-            Image = @"/images/russia.jpg",
-        }); ;
-        context.SaveChanges();
-    }
-}

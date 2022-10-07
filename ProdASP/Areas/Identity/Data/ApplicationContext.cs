@@ -20,6 +20,9 @@ public class ApplicationContext : IdentityDbContext<ApplicationUser>
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        builder.Entity<Country>().HasData(
+                new Country { Id = 1, NamePlace = "Россия", Language = "русский", Information = "Какой-то текстКакой-то текстКакой-то текстКакой-то текстКакой-то текстКакой-то текст", Image = @"/images/russia.jpg", }
+            );
         builder.HasDefaultSchema("Identity");
         builder.Entity<IdentityUser>(entity =>
         {

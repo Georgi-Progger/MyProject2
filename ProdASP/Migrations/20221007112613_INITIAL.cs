@@ -245,6 +245,12 @@ namespace ProdASP.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                schema: "Identity",
+                table: "Places",
+                columns: new[] { "Id", "Image", "Information", "Language", "NamePlace" },
+                values: new object[] { 1, "/images/russia.jpg", "Какой-то текстКакой-то текстКакой-то текстКакой-то текстКакой-то текстКакой-то текст", "русский", "Россия" });
+
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 schema: "Identity",
