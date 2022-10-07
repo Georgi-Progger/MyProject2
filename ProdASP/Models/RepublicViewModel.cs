@@ -9,6 +9,6 @@ namespace ProdASP.Models
         [Required]
         public string Language { get; set; } = null!;
         [Required]
-        public string CountryName { get; set; }
+        public int CountryName { get; set; }
 	}
 }

@@ -46,7 +46,7 @@ namespace ProdASP.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NamePlace = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CountryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CountryName = table.Column<int>(type: "int", nullable: false),
                     RepubName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -80,7 +80,7 @@ namespace ProdASP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NamePlace = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CountryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CountryName = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

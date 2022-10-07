@@ -285,9 +285,8 @@ namespace ProdASP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CountryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CountryName")
+                        .HasColumnType("int");
 
                     b.Property<string>("NamePlace")
                         .HasColumnType("nvarchar(max)");
@@ -334,9 +333,8 @@ namespace ProdASP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CountryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CountryName")
+                        .HasColumnType("int");
 
                     b.Property<string>("Language")
                         .IsRequired()

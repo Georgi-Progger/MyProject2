@@ -8,6 +8,6 @@ namespace ProdASP.Models
         public string? NamePlace { get; set; }
         [Required]
         public string? Language { get; set; }
-        public string CountryName { get; set; }
+        public int CountryName { get; set; }
     }
 }

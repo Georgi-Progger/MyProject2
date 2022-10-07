@@ -12,7 +12,7 @@ using ProdASP.Data;
 namespace ProdASP.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221006212952_INITIAL")]
+    [Migration("20221007072947_INITIAL")]
     partial class INITIAL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -287,9 +287,8 @@ namespace ProdASP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CountryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CountryName")
+                        .HasColumnType("int");
 
                     b.Property<string>("NamePlace")
                         .HasColumnType("nvarchar(max)");
@@ -336,9 +335,8 @@ namespace ProdASP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CountryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CountryName")
+                        .HasColumnType("int");
 
                     b.Property<string>("Language")
                         .IsRequired()

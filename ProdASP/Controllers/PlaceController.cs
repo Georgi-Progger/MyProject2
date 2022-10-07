@@ -70,11 +70,27 @@ namespace ProdASP.Controllers
         public IActionResult Delate(int id)
         {
             Country adv = _db.Places.FirstOrDefault(a => a.Id == id)!;
+            var cit = from com in _db.Cities
+                      where com.CountryName == adv.Id
+                      select com;
+            var rep = from com in _db.Republics
+                      where com.CountryName == adv.Id
+                      select com;
             if (adv != null)
             {
                 _db.Places.Remove(adv);
+
                 _db.SaveChanges();
             }
+            foreach (City comment in cit)
+            {
+                _db.Cities.Remove(comment);
+            }
+            foreach (Republic comment in rep)
+            {
+                _db.Republics.Remove(comment);
+            }
+            _db.SaveChanges();
             return RedirectToAction("Index", "Home");
 
         }
@@ -149,7 +165,7 @@ namespace ProdASP.Controllers
                 City adv = new City
                 {
                     NamePlace = plcViewModel.NamePlace,
-                    CountryName = plcViewModel.RepubName,
+                    CountryName = plcViewModel.CountryName,
                     RepubName = plcViewModel.RepubName
 
                 };

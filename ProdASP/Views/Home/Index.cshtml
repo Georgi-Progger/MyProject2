@@ -10,12 +10,12 @@
     </tr>
     @foreach (var i in Model.Country){
         <tr class="header expand">
-            <td class="top" style="width: 5%;" ><span class="sign"></span>
-
-        </td>
-            <td class="top" ><img  src="@i.Image" width="100px" height="50px" /></td>
-            <td class="top" style="width: 40%;">@i.NamePlace</td>
-            <td class="top" style="width: 40%;">@i.Language</td>
+            <td id="top" style="width: 5%;">
+                <span class="sign"></span>
+            </td>
+            <td id="top"><img src="@i.Image" width="100px" height="50px" /></td>
+            <td id="top" style="width: 40%;">@i.NamePlace</td>
+            <td id="top" style="width: 40%;">@i.Language</td>
         </tr>
         <tr>
             <td class="down" colspan="2"></td>
@@ -32,7 +32,7 @@
         </tr>
         @foreach (var u in Model.Republic)
         {
-            if (u.CountryName == Convert.ToString(i.Id) && u.CountryName != null)
+            if (u.CountryName == i.Id && u.CountryName != null)
             {
                 <tr>
                     <th class="down" colspan="2"></th>
@@ -40,22 +40,25 @@
                     <td>@u.Language</td>
                 </tr>
             }
+            
         }
         <tr>
-            <th class="down2" colspan="2" rowspan="2"></th>
+            <th class="down2" colspan="2"></th>
             <th>Города</th>
             <th>В какой республике</th>
         </tr>
-        @foreach (var u in Model.City)
+        @foreach (var u2 in Model.City)
         {
-            @if (u.RepubName == Convert.ToString(i.Id) && u.RepubName != null){
-            <tr>
-                <th class="down" colspan="2"></th>
-                <td >@u.NamePlace</td>
-                <td >@u.RepubName</td>
-            </tr>
+            @if (u2.CountryName == i.Id && u2.RepubName != null)
+            {
+                <tr>
+                    <th class="down" colspan="2"></th>
+                    <td>@u2.NamePlace</td>
+                    <td>@u2.RepubName</td>
+                </tr>
             }
         }
+        <tr></tr>
     }
     
 </table>
@@ -74,15 +77,16 @@
         .info{
             word-break: break-all;
         }
-        .top{
-            border-top : 3px solid black;
-        }
         .down2{
             border-left : hidden!important;
+            border-bottom: hidden !important;
         }
         .down{
             border-left : hidden!important;
             border-bottom : hidden!important;
+        }
+        #top {
+            border-top: 3px solid black;
         }
         table, tr, td, th {
             border: 1px solid black;

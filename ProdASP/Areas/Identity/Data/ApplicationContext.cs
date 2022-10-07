@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProdASP.Models;
+using System.Reflection.Emit;
 
 namespace ProdASP.Data;
 
@@ -48,5 +49,6 @@ public class ApplicationContext : IdentityDbContext<ApplicationUser>
         {
             entity.ToTable("UserTokens");
         });
+
     }
 }
